@@ -21,10 +21,10 @@
     
     <style>
         :root {
-            --primary: #FF9900; /* Amazon orange */
+            --primary: #FF9900;
             --primary-dark: #FF6600;
-            --secondary: #232F3E; /* Amazon dark */
-            --accent: #146EB4; /* Amazon blue */
+            --secondary: #232F3E;
+            --accent: #146EB4;
             --light-accent: #FFD700;
             --dark: #131A22;
             --light: #f8f9fa;
@@ -552,7 +552,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            display: none; /* HIDDEN by default */
+            display: none;
             gap: 10px;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -605,7 +605,7 @@
             transform: scale(1.1);
         }
 
-        /* Books Grid - FIX FOR MOBILE CLICKS */
+        /* Books Grid */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -622,7 +622,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e8e8e8;
             position: relative;
-            cursor: pointer; /* Make it clear it's clickable */
+            cursor: pointer;
             overflow: hidden;
         }
 
@@ -631,7 +631,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Make the entire card clickable area */
         .book-card::after {
             content: '';
             position: absolute;
@@ -723,7 +722,7 @@
             border-radius: 15px;
             margin-top: 30px;
             border: 2px dashed var(--primary);
-            display: none; /* HIDDEN by default */
+            display: none;
         }
 
         /* Show form only in admin mode */
@@ -935,7 +934,7 @@
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
             .book-card {
-                touch-action: manipulation; /* Improves touch responsiveness */
+                touch-action: manipulation;
             }
             
             .kindle-btn {
@@ -1185,7 +1184,7 @@
                         </div>
                         <div class="form-group">
                             <label for="bookLink">Amazon Link *</label>
-                            <input type="url" id="bookLink" required value="https://author.amazon.com/home" placeholder="https://amazon.com/dp/YOUR-BOOK-ID">
+                            <input type="url" id="bookLink" required value="" placeholder="https://www.amazon.com/dp/YOUR-BOOK-ID?tag=rabeel-20">
                         </div>
                     </div>
                     
@@ -1313,7 +1312,7 @@
 
         // Wait for DOM to load
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize books
+            // Initialize books with CORRECTED AMAZON BOOK LINKS
             let books = JSON.parse(localStorage.getItem('books')) || [
                 {
                     id: 1,
@@ -1321,7 +1320,8 @@
                     genre: "Literary Fiction",
                     description: "A poignant exploration of arranged marriage in India, blending tradition with modernity and the complex interplay between duty and desire.",
                     year: 2022,
-                    link: "https://author.amazon.com/home",
+                    // FIXED: Changed from author page to book page
+                    link: "https://www.amazon.com/dp/B0CJZJFLZY?tag=rabeel-20",
                     color: "#3498db",
                     coverImage: null
                 },
@@ -1331,7 +1331,8 @@
                     genre: "Psychological Drama",
                     description: "A raw, lyrical journey into the visceral depths of longing, addiction, and the obsessive nature of unfulfilled desire.",
                     year: 2023,
-                    link: "https://author.amazon.com/home",
+                    // FIXED: Changed from author page to book page
+                    link: "https://www.amazon.com/dp/B0CHD8FW9P?tag=rabeel-20",
                     color: "#9b59b6",
                     coverImage: null
                 },
@@ -1341,7 +1342,8 @@
                     genre: "Contemporary Fiction",
                     description: "A powerful exploration of identity, family secrets, and the dark heart of human relationships across cultural boundaries.",
                     year: 2023,
-                    link: "https://author.amazon.com/home",
+                    // FIXED: Changed from author page to book page
+                    link: "https://www.amazon.com/dp/B0CJZJFLZY?tag=rabeel-20",
                     color: "#e74c3c",
                     coverImage: null
                 }
@@ -1479,7 +1481,7 @@
                     genre: bookData.genre,
                     description: bookData.description.trim(),
                     year: parseInt(bookData.year),
-                    link: bookData.link || 'https://author.amazon.com/home',
+                    link: bookData.link || 'https://www.amazon.com/dp/YOUR-BOOK-ID?tag=rabeel-20',
                     color: generateRandomColor(),
                     coverImage: currentUploadedImage
                 };
@@ -1491,7 +1493,7 @@
                 showToast('Book added successfully!', 'success');
             }
 
-            // Edit book - GLOBAL FUNCTION (FIXED)
+            // Edit book - GLOBAL FUNCTION
             window.editBook = function(index) {
                 currentlyEditingIndex = index;
                 const book = books[index];
@@ -1512,8 +1514,6 @@
                 
                 // Change button text and remove old event listeners
                 submitBtn.innerHTML = '<i class="fas fa-save"></i> Update Book';
-                
-                // Remove any existing click handlers
                 submitBtn.onclick = null;
                 
                 // Add new click handler for update
