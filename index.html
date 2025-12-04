@@ -605,7 +605,7 @@
             transform: scale(1.1);
         }
 
-        /* Books Grid */
+        /* Books Grid - FIX FOR MOBILE CLICKS */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -622,11 +622,32 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e8e8e8;
             position: relative;
+            cursor: pointer; /* Make it clear it's clickable */
+            overflow: hidden;
         }
 
         .book-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Make the entire card clickable area */
+        .book-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* Ensure buttons are clickable above the overlay */
+        .book-card .kindle-btn,
+        .book-card .book-actions,
+        .book-card .action-btn {
+            position: relative;
+            z-index: 2;
         }
 
         .book-cover {
@@ -643,6 +664,8 @@
             font-size: 14px;
             text-align: center;
             padding: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .book-title {
@@ -650,6 +673,8 @@
             font-size: 1.3em;
             color: var(--secondary);
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .book-description {
@@ -657,6 +682,8 @@
             font-size: 0.95em;
             margin-bottom: 15px;
             line-height: 1.5;
+            position: relative;
+            z-index: 1;
         }
 
         .kindle-btn {
@@ -670,6 +697,8 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            z-index: 2;
         }
 
         .kindle-btn:hover {
@@ -891,6 +920,19 @@
             margin-top: 40px;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .book-card {
+                touch-action: manipulation; /* Improves touch responsiveness */
+            }
+            
+            .kindle-btn {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+            }
         }
 
         /* Responsive Design */
@@ -1201,21 +1243,15 @@
 
         // Check if URL contains #admin
         function checkForAdminMode() {
-            console.log("Checking URL for admin access...");
-            console.log("Current URL hash:", window.location.hash);
-            
             if (window.location.hash === '#admin') {
-                console.log("#admin found! Showing password prompt...");
                 const password = prompt("🔐 ADMIN ACCESS REQUIRED\n\nEnter admin password to edit books:");
                 
                 if (password === ADMIN_PASSWORD) {
-                    console.log("Password correct! Activating admin mode...");
                     activateAdminMode();
                     // Remove #admin from URL without reloading page
                     history.replaceState(null, null, ' ');
                 } else {
                     alert('❌ Incorrect password!');
-                    // Redirect to home page
                     window.location.hash = '';
                 }
             }
@@ -1223,7 +1259,6 @@
 
         // Activate admin mode
         function activateAdminMode() {
-            console.log("Activating admin features...");
             isAdminMode = true;
             
             // Add admin class to body
@@ -1233,7 +1268,6 @@
             const adminBar = document.getElementById('adminBar');
             if (adminBar) {
                 adminBar.style.display = 'flex';
-                console.log("Admin bar shown");
             }
             
             // Show all edit/delete buttons
@@ -1241,13 +1275,11 @@
             editButtons.forEach(button => {
                 button.style.display = 'flex';
             });
-            console.log("Edit buttons shown:", editButtons.length);
             
             // Show add book form
             const addForm = document.querySelector('.add-book-form');
             if (addForm) {
                 addForm.style.display = 'block';
-                console.log("Add book form shown");
             }
             
             // Show admin info box
@@ -1256,15 +1288,12 @@
                 adminInfo.style.display = 'block';
             }
             
-            console.log("Admin mode fully activated!");
-            
             // Show success message
             showToast('✅ Admin mode activated! You can now edit books.', 'success');
         }
 
         // Logout function
         function logoutAdmin() {
-            console.log("Logging out of admin mode...");
             isAdminMode = false;
             
             // Remove admin class from body
@@ -1287,8 +1316,6 @@
             const adminInfo = document.querySelector('.admin-info');
             if (adminInfo) adminInfo.style.display = 'none';
             
-            console.log("Logged out successfully!");
-            
             // Show logout message
             showToast('🔒 Logged out of admin mode', 'warning');
             
@@ -1301,19 +1328,16 @@
             const logoutBtn = document.getElementById('logoutBtn');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', logoutAdmin);
-                console.log("Logout button event listener added");
             }
         });
 
         // Check for admin mode on page load
         window.addEventListener('DOMContentLoaded', function() {
-            console.log("Page loaded, checking for admin access...");
             checkForAdminMode();
         });
 
-        // Also check when hash changes (if user manually types #admin)
+        // Also check when hash changes
         window.addEventListener('hashchange', function() {
-            console.log("URL hash changed to:", window.location.hash);
             checkForAdminMode();
         });
 
@@ -1389,6 +1413,22 @@
                 return colors[Math.floor(Math.random() * colors.length)];
             }
 
+            // Handle book card clicks (for mobile compatibility)
+            function handleBookCardClick(event, bookLink) {
+                // Don't trigger if clicking edit/delete buttons
+                if (event.target.closest('.book-actions') || event.target.closest('.action-btn')) {
+                    return;
+                }
+                
+                // Don't trigger if clicking the "View on Amazon" button
+                if (event.target.closest('.kindle-btn')) {
+                    return;
+                }
+                
+                // Open Amazon link in new tab
+                window.open(bookLink, '_blank');
+            }
+
             // Display all books
             function displayBooks() {
                 booksGrid.innerHTML = '';
@@ -1407,12 +1447,18 @@
                 books.forEach((book, index) => {
                     const bookCard = document.createElement('div');
                     bookCard.className = 'book-card';
+                    
+                    // Add click event to entire card (for mobile compatibility)
+                    bookCard.addEventListener('click', function(e) {
+                        handleBookCardClick(e, book.link);
+                    });
+                    
                     bookCard.innerHTML = `
                         <div class="book-actions" style="display: none;">
-                            <button class="action-btn edit-btn" onclick="editBook(${index})">
+                            <button class="action-btn edit-btn" onclick="event.stopPropagation(); editBook(${index})">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="action-btn delete-btn" onclick="deleteBook(${index})">
+                            <button class="action-btn delete-btn" onclick="event.stopPropagation(); deleteBook(${index})">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -1429,7 +1475,7 @@
                             </span>
                         </div>
                         <p class="book-description">${book.description}</p>
-                        <a href="${book.link}" class="kindle-btn" target="_blank" rel="noopener">
+                        <a href="${book.link}" class="kindle-btn" target="_blank" rel="noopener" onclick="event.stopPropagation();">
                             <i class="fab fa-amazon"></i> View on Amazon
                         </a>
                     `;
