@@ -371,6 +371,7 @@
         .book-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
         }
 
         .book-cover {
@@ -426,11 +427,12 @@
         }
 
         .book-genre {
-            background: var(--light-gray);
-            color: var(--gray);
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            color: white;
             padding: 6px 15px;
             border-radius: 15px;
             font-size: 0.9em;
+            font-weight: 500;
         }
 
         .book-year {
@@ -462,6 +464,19 @@
         .kindle-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(255, 153, 0, 0.3);
+        }
+
+        /* Colorful touches for book cards */
+        .book-card:nth-child(1) {
+            border-top: 5px solid #3498db;
+        }
+        
+        .book-card:nth-child(2) {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .book-card:nth-child(3) {
+            border-top: 5px solid #2ecc71;
         }
 
         /* About Section */
@@ -756,7 +771,7 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // YOUR REAL BOOK DATA WITH ACTUAL AMAZON LINKS
+            // YOUR REAL BOOK DATA WITH ACTUAL COVERS AND AMAZON LINKS
             const books = [
                 {
                     id: 1,
@@ -766,7 +781,8 @@
                     year: 2022,
                     // YOUR ACTUAL AMAZON LINK - Kindle edition
                     link: "https://www.amazon.com/dp/B0F9LRLCWW",
-                    coverImage: "https://m.media-amazon.com/images/I/71z6z6z6z6L.jpg"
+                    // YOUR ACTUAL BOOK COVER
+                    coverImage: "https://m.media-amazon.com/images/I/715nxnxk+GL._SY522_.jpg"
                 },
                 {
                     id: 2,
@@ -776,7 +792,8 @@
                     year: 2023,
                     // YOUR ACTUAL AMAZON LINK - Kindle edition
                     link: "https://www.amazon.com/dp/B0DW48BRR7",
-                    coverImage: "https://m.media-amazon.com/images/I/71y6y6y6y6L.jpg"
+                    // YOUR ACTUAL BOOK COVER
+                    coverImage: "https://m.media-amazon.com/images/I/612uDDQ+waL._SY522_.jpg"
                 },
                 {
                     id: 3,
@@ -786,7 +803,8 @@
                     year: 2023,
                     // YOUR ACTUAL AMAZON LINK - Kindle edition
                     link: "https://www.amazon.com/dp/B0F4PMYR73",
-                    coverImage: "https://m.media-amazon.com/images/I/71x6x6x6x6L.jpg"
+                    // YOUR ACTUAL BOOK COVER
+                    coverImage: "https://m.media-amazon.com/images/I/617tMMt5aKL._SL1500_.jpg"
                 }
             ];
 
