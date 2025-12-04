@@ -1246,13 +1246,33 @@
     </div>
 
     <!-- JavaScript -->
-   <script>
+   <!-- JavaScript -->
+<script>
     // ==================== ADMIN SYSTEM ====================
     const ADMIN_PASSWORD = "Rajaliyabdullah@220112";
     let isAdminMode = false;
-    let currentlyEditingIndex = -1; // Track which book we're editing
+    let currentlyEditingIndex = -1;
+    let currentUploadedImage = null;
 
-    // Check if URL contains #admin
+    // Toast notifications
+    function showToast(message, type = 'success') {
+        const toastContainer = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-exclamation-triangle'}"></i>
+            <div class="toast-message">${message}</div>
+        `;
+        
+        toastContainer.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
+    }
+
+    // Check for admin mode
     function checkForAdminMode() {
         if (window.location.hash === '#admin') {
             const password = prompt("🔐 ADMIN ACCESS REQUIRED\n\nEnter admin password to edit books:");
@@ -1287,14 +1307,14 @@
         document.querySelectorAll('.book-actions').forEach(button => button.style.display = 'none');
         document.querySelector('.add-book-form').style.display = 'none';
         document.querySelector('.admin-info').style.display = 'none';
-        resetForm(); // Reset form when logging out
+        resetForm();
         showToast('🔒 Logged out of admin mode', 'warning');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Wait for DOM to load
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize books array from localStorage or with default books
+        // Initialize books
         let books = JSON.parse(localStorage.getItem('books')) || [
             {
                 id: 1,
@@ -1333,37 +1353,15 @@
         const addBookForm = document.getElementById('addBookForm');
         const bookCoverInput = document.getElementById('bookCoverInput');
         const imagePreview = document.getElementById('imagePreview');
-        const uploadArea = document.getElementById('uploadArea');
         const submitBtn = document.querySelector('.add-btn');
-        
-        // Track current uploaded image (temporary storage)
-        let currentUploadedImage = null;
-        
-        // Toast notification function
-        function showToast(message, type = 'success') {
-            const toastContainer = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-exclamation-triangle'}"></i>
-                <div class="toast-message">${message}</div>
-            `;
-            
-            toastContainer.appendChild(toast);
-            setTimeout(() => toast.classList.add('show'), 100);
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 4000);
-        }
 
-        // Generate a random color for book covers
+        // Generate random color
         function generateRandomColor() {
             const colors = ['#3498db', '#9b59b6', '#e74c3c', '#2ecc71', '#f39c12', '#1abc9c', '#d35400', '#34495e'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
 
-        // Display all books WITH COVER IMAGES
+        // Display books
         function displayBooks() {
             booksGrid.innerHTML = '';
             
@@ -1382,25 +1380,26 @@
                 const bookCard = document.createElement('div');
                 bookCard.className = 'book-card';
                 
-                // Add click event to entire card
+                // Make entire card clickable for mobile
                 bookCard.addEventListener('click', function(e) {
-                    if (e.target.closest('.book-actions') || e.target.closest('.action-btn') || e.target.closest('.kindle-btn')) {
+                    // Don't trigger if clicking buttons
+                    if (e.target.closest('.book-actions') || 
+                        e.target.closest('.action-btn') || 
+                        e.target.closest('.kindle-btn')) {
                         return;
                     }
                     window.open(book.link, '_blank');
                 });
                 
-                // Create book cover HTML - USE UPLOADED IMAGE IF AVAILABLE
+                // Book cover - show image if available
                 let coverHTML = '';
                 if (book.coverImage) {
-                    // Show uploaded image
                     coverHTML = `
                         <div class="book-cover" style="background: none; padding: 0;">
-                            <img src="${book.coverImage}" alt="${book.title}">
+                            <img src="${book.coverImage}" alt="${book.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
                         </div>
                     `;
                 } else {
-                    // Show colored background with initials
                     coverHTML = `
                         <div class="book-cover" style="background: linear-gradient(45deg, ${book.color || generateRandomColor()}, ${book.color || generateRandomColor()}80);">
                             <span style="font-size: 1.2em; padding: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
@@ -1412,10 +1411,10 @@
                 
                 bookCard.innerHTML = `
                     <div class="book-actions" style="display: none;">
-                        <button class="action-btn edit-btn" onclick="event.stopPropagation(); editBook(${index})">
+                        <button class="action-btn edit-btn" onclick="editBook(${index})">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="action-btn delete-btn" onclick="event.stopPropagation(); deleteBook(${index})">
+                        <button class="action-btn delete-btn" onclick="deleteBook(${index})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -1430,7 +1429,7 @@
                         </span>
                     </div>
                     <p class="book-description">${book.description}</p>
-                    <a href="${book.link}" class="kindle-btn" target="_blank" rel="noopener" onclick="event.stopPropagation();">
+                    <a href="${book.link}" class="kindle-btn" target="_blank" rel="noopener">
                         <i class="fab fa-amazon"></i> View on Amazon
                     </a>
                 `;
@@ -1438,7 +1437,7 @@
             });
         }
 
-        // Save books to localStorage
+        // Save books
         function saveBooks() {
             localStorage.setItem('books', JSON.stringify(books));
         }
@@ -1447,7 +1446,7 @@
         bookCoverInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
-                // Check file size (max 5MB)
+                // Check file size (5MB max)
                 if (file.size > 5 * 1024 * 1024) {
                     showToast('Image too large! Max 5MB allowed.', 'error');
                     this.value = '';
@@ -1464,7 +1463,6 @@
                 
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    // Save image data temporarily
                     currentUploadedImage = e.target.result;
                     imagePreview.src = currentUploadedImage;
                     imagePreview.style.display = 'block';
@@ -1474,7 +1472,7 @@
             }
         });
 
-        // Add a new book WITH COVER IMAGE
+        // Add new book
         function addBook(bookData) {
             const newBook = {
                 id: Date.now(),
@@ -1484,48 +1482,49 @@
                 year: parseInt(bookData.year),
                 link: bookData.link || 'https://author.amazon.com/home',
                 color: generateRandomColor(),
-                coverImage: currentUploadedImage // Save the uploaded image
+                coverImage: currentUploadedImage
             };
             
             books.push(newBook);
             saveBooks();
             displayBooks();
-            
-            // Reset image upload
-            currentUploadedImage = null;
-            bookCoverInput.value = '';
-            imagePreview.style.display = 'none';
-            
+            resetForm();
             showToast('Book added successfully!', 'success');
         }
 
-        // Edit book
+        // Edit book - GLOBAL FUNCTION
         window.editBook = function(index) {
             currentlyEditingIndex = index;
             const book = books[index];
             
-            // Populate form with book data
+            // Fill form
             document.getElementById('bookTitle').value = book.title;
             document.getElementById('bookGenre').value = book.genre;
             document.getElementById('bookDescription').value = book.description;
             document.getElementById('publicationYear').value = book.year;
             document.getElementById('bookLink').value = book.link;
             
-            // Load existing cover image if available
+            // Load cover image
             if (book.coverImage) {
                 currentUploadedImage = book.coverImage;
                 imagePreview.src = book.coverImage;
                 imagePreview.style.display = 'block';
             }
             
-            // Change button text and function
+            // Change button
             submitBtn.innerHTML = '<i class="fas fa-save"></i> Update Book';
-            submitBtn.setAttribute('data-action', 'update');
+            submitBtn.onclick = handleUpdate;
             
             // Scroll to form
             document.getElementById('add-book').scrollIntoView({ behavior: 'smooth' });
             showToast('Editing book: ' + book.title, 'warning');
         };
+
+        // Handle update
+        function handleUpdate(e) {
+            e.preventDefault();
+            updateBook();
+        }
 
         // Update book
         function updateBook() {
@@ -1563,33 +1562,32 @@
                 return;
             }
             
-            // Keep existing cover image unless new one uploaded
+            // Update book
+            books[currentlyEditingIndex].title = bookData.title;
+            books[currentlyEditingIndex].genre = bookData.genre;
+            books[currentlyEditingIndex].description = bookData.description;
+            books[currentlyEditingIndex].year = bookData.year;
+            books[currentlyEditingIndex].link = bookData.link;
+            
+            // Update cover image if new one uploaded
             if (currentUploadedImage) {
                 books[currentlyEditingIndex].coverImage = currentUploadedImage;
             }
             
-            // Update book data
-            books[currentlyEditingIndex] = { 
-                ...books[currentlyEditingIndex], 
-                ...bookData 
-            };
-            
             saveBooks();
             displayBooks();
-            
-            // Reset form
             resetForm();
             showToast('Book updated successfully!', 'success');
         }
 
-        // Delete book
+        // Delete book - GLOBAL FUNCTION
         window.deleteBook = function(index) {
             if (confirm(`Are you sure you want to delete "${books[index].title}"?`)) {
                 const deletedBook = books.splice(index, 1)[0];
                 saveBooks();
                 displayBooks();
                 
-                // If we were editing this book, reset the form
+                // Reset form if editing this book
                 if (currentlyEditingIndex === index) {
                     resetForm();
                 }
@@ -1607,70 +1605,64 @@
             bookCoverInput.value = '';
             currentlyEditingIndex = -1;
             submitBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Book';
-            submitBtn.setAttribute('data-action', 'add');
+            submitBtn.onclick = null;
+            submitBtn.type = 'submit';
         }
 
         // Handle form submission
         addBookForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const action = submitBtn.getAttribute('data-action');
+            const bookData = {
+                title: document.getElementById('bookTitle').value,
+                genre: document.getElementById('bookGenre').value,
+                description: document.getElementById('bookDescription').value,
+                year: document.getElementById('publicationYear').value,
+                link: document.getElementById('bookLink').value
+            };
             
-            if (action === 'update') {
+            // Validation
+            if (!bookData.title.trim()) {
+                showToast('Please enter a book title', 'error');
+                return;
+            }
+            
+            if (!bookData.genre) {
+                showToast('Please select a genre', 'error');
+                return;
+            }
+            
+            if (!bookData.description.trim()) {
+                showToast('Please enter a book description', 'error');
+                return;
+            }
+            
+            if (!bookData.year || bookData.year < 1900 || bookData.year > 2100) {
+                showToast('Please enter a valid publication year', 'error');
+                return;
+            }
+            
+            if (currentlyEditingIndex !== -1) {
                 updateBook();
             } else {
-                const bookData = {
-                    title: document.getElementById('bookTitle').value,
-                    genre: document.getElementById('bookGenre').value,
-                    description: document.getElementById('bookDescription').value,
-                    year: document.getElementById('publicationYear').value,
-                    link: document.getElementById('bookLink').value
-                };
-                
-                // Validation
-                if (!bookData.title.trim()) {
-                    showToast('Please enter a book title', 'error');
-                    return;
-                }
-                
-                if (!bookData.genre) {
-                    showToast('Please select a genre', 'error');
-                    return;
-                }
-                
-                if (!bookData.description.trim()) {
-                    showToast('Please enter a book description', 'error');
-                    return;
-                }
-                
-                if (!bookData.year || bookData.year < 1900 || bookData.year > 2100) {
-                    showToast('Please enter a valid publication year', 'error');
-                    return;
-                }
-                
                 addBook(bookData);
             }
             
-            resetForm();
             document.getElementById('books').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Initial display of books
+        // Initial display
         displayBooks();
-        
-        // Save default books if localStorage is empty
-        if (!localStorage.getItem('books')) {
-            saveBooks();
-        }
+        if (!localStorage.getItem('books')) saveBooks();
         
         // Setup logout button
         document.getElementById('logoutBtn').addEventListener('click', logoutAdmin);
         
-        // Check for admin mode
+        // Check admin mode
         checkForAdminMode();
         window.addEventListener('hashchange', checkForAdminMode);
         
-        // Smooth scrolling for navigation
+        // Smooth scrolling
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1685,7 +1677,7 @@
             });
         });
         
-        // Set active nav link based on scroll
+        // Active nav on scroll
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
