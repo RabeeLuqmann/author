@@ -845,8 +845,8 @@
             <div class="new-book-badge">NEW RELEASE</div>
             <div class="new-book-content">
                 <div class="new-book-cover">
-                    <!-- CORRECT COVER FOR The Wolf and the Gazelle -->
-                    <img src="https://s3.amazonaws.com/CAPS-SSE/content/60378858/DIGITAL_BOOK_THUMBNAIL?versionId=wR34FTXw6tp6.ipA.L4LdTm1DIvevHxw&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20251228T084053Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QJGKJL5OP%2F20251228%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b40805b5582ed14d2598d3fd04f1a107cfae03db773b7d79e05625e06ba795b2" 
+                    <!-- PERMANENT PLACEHOLDER for The Wolf and the Gazelle -->
+                    <img src="https://via.placeholder.com/300x450/9b59b6/ffffff?text=The+Wolf+and+the+Gazelle&bold" 
                          alt="The Wolf and the Gazelle Cover">
                 </div>
                 <div class="new-book-info">
@@ -890,7 +890,7 @@
             </div>
             
             <div class="books-grid" id="booksGrid">
-                <!-- Books will be loaded here by JavaScript with CORRECT covers -->
+                <!-- Books will be loaded here by JavaScript with PERMANENT placeholders -->
             </div>
         </section>
 
@@ -974,7 +974,7 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // CORRECTED BOOKS DATA WITH PROPER COVERS
+            // PERMANENT PLACEHOLDER IMAGES - These will NEVER expire
             const books = [
                 {
                     id: 1,
@@ -983,8 +983,8 @@
                     description: "A powerful exploration of identity, family secrets, and the dark heart of human relationships across cultural boundaries.",
                     year: 2023,
                     link: "https://www.amazon.com/dp/B0F9V9MP8V",
-                    // CORRECT COVER from original code
-                    coverImage: "https://m.media-amazon.com/images/I/612uDDQ+waL._SL1499_.jpg"
+                    // PERMANENT placeholder - blue background
+                    coverImage: "https://via.placeholder.com/180x270/3498db/ffffff?text=The+Daughter+Who+Was+Not+Named"
                 },
                 {
                     id: 2,
@@ -993,8 +993,8 @@
                     description: "A poignant exploration of arranged marriage in India, blending tradition with modernity and the complex interplay between duty and desire.",
                     year: 2022,
                     link: "https://www.amazon.com/dp/B0DYD7Z1XT",
-                    // CORRECT COVER from original code
-                    coverImage: "https://m.media-amazon.com/images/I/61XdzZWzTWL._SY522_.jpg"
+                    // PERMANENT placeholder - red background
+                    coverImage: "https://via.placeholder.com/180x270/e74c3c/ffffff?text=Bound+by+Destiny"
                 },
                 {
                     id: 3,
@@ -1003,8 +1003,8 @@
                     description: "A raw, lyrical journey into the visceral depths of longing, addiction, and the obsessive nature of unfulfilled desire.",
                     year: 2023,
                     link: "https://www.amazon.com/dp/B0F4QHV56H",
-                    // CORRECT COVER from original code
-                    coverImage: "https://m.media-amazon.com/images/I/61I2hL-VPxL._SL1499_.jpg"
+                    // PERMANENT placeholder - green background
+                    coverImage: "https://via.placeholder.com/180x270/2ecc71/ffffff?text=Endorphin%3A+The+Ache+of+Wanting"
                 }
             ];
 
@@ -1020,8 +1020,7 @@
                     bookCard.innerHTML = `
                         <div class="book-cover">
                             <img src="${book.coverImage}" 
-                                 alt="${book.title}"
-                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/180x270/cccccc/666666?text=${encodeURIComponent(book.title.substring(0, 30))}'">
+                                 alt="${book.title}">
                         </div>
                         <h3 class="book-title">${book.title}</h3>
                         <div class="book-meta">
@@ -1078,20 +1077,6 @@
                         link.classList.add('active');
                     }
                 });
-            });
-
-            // Image fallback function
-            function handleImageError(img) {
-                const placeholder = `https://via.placeholder.com/300x450/cccccc/666666?text=${encodeURIComponent(img.alt.substring(0, 30))}`;
-                img.src = placeholder;
-                img.onerror = null; // Prevent infinite loop
-            }
-
-            // Set up image error handlers
-            document.querySelectorAll('img').forEach(img => {
-                img.onerror = function() {
-                    handleImageError(this);
-                };
             });
         });
     </script>
