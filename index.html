@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rabeè Luqmann - Author Portfolio | German-Jordanian Novelist</title>
+    <title>Rabeè Luqmann - Author | German-Jordanian Novelist</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Official website of Rabeè Luqmann - German-Jordanian author of 'The Wolf and the Gazelle', 'Bound by Destiny', 'Endorphin', and 'The Daughter Who Was Not Named'. Explore literary fiction on Amazon.">
-    <meta name="keywords" content="Rabeè Luqmann, German-Jordanian author, literary fiction, The Wolf and the Gazelle, Bound by Destiny, Endorphin, The Daughter Who Was Not Named, Amazon books">
+    <meta name="description" content="Official website of Rabeè Luqmann - German-Jordanian author of 'The Wolf and the Gazelle', 'Bound by Destiny', 'Endorphin', and 'The Daughter Who Was Not Named'. Literary fiction available on Amazon.">
+    <meta name="keywords" content="Rabeè Luqmann, German-Jordanian author, literary fiction, The Wolf and the Gazelle, Bound by Destiny, Endorphin, The Daughter Who Was Not Named">
     <meta name="author" content="Rabeè Luqmann">
     
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Rabeè Luqmann - Official Author Website">
-    <meta property="og:description" content="Discover the literary works of Rabeè Luqmann. Stories of love, survival, and the human condition.">
+    <meta property="og:title" content="Rabeè Luqmann - Author">
+    <meta property="og:description" content="German-Jordanian author exploring love, desire, survival, and the human condition across cultures.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://m.media-amazon.com/images/I/71VfFkhGZDL._SL1500_.jpg">
     
@@ -40,9 +40,6 @@
             --light: #f8f9fa;
             --gray: #565959;
             --light-gray: #e9ecef;
-            --success: #00a65a;
-            --error: #dc3545;
-            --warning: #ffc107;
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -260,11 +257,6 @@
             background: linear-gradient(45deg, #FF9900, #FF6600);
             color: white;
             box-shadow: 0 5px 15px rgba(255, 153, 0, 0.3);
-        }
-
-        .btn-amazon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 153, 0, 0.4);
         }
 
         /* ===== NEW BOOK SECTION ===== */
@@ -498,11 +490,9 @@
             box-shadow: 0 10px 20px rgba(255, 153, 0, 0.3);
         }
 
-        /* Book card color accents */
         .book-card:nth-child(1) { border-top: 5px solid #3498db; }
         .book-card:nth-child(2) { border-top: 5px solid #e74c3c; }
         .book-card:nth-child(3) { border-top: 5px solid #2ecc71; }
-        .book-card:nth-child(4) { border-top: 5px solid #9b59b6; }
 
         /* ===== SOCIAL MEDIA SECTION ===== */
         .social-media-section {
@@ -577,10 +567,6 @@
             background-clip: text;
         }
 
-        .social-card.amazon i {
-            color: var(--primary);
-        }
-
         .social-card h3 {
             font-family: var(--font-serif);
             font-size: 1.6em;
@@ -605,11 +591,6 @@
             font-weight: 600;
             transition: var(--transition);
             box-shadow: 0 5px 15px rgba(255, 153, 0, 0.3);
-        }
-
-        .social-link-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 153, 0, 0.4);
         }
 
         /* ===== ABOUT SECTION ===== */
@@ -724,31 +705,10 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-text {
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .animate-text-delay {
-            animation: fadeInUp 1s ease;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .hero h1 { font-size: 3.2em; }
             .hero { padding: 60px 40px; }
-            .books-section, .about-section, .social-media-section, .new-book-section { padding: 40px; }
             .new-book-content { flex-direction: column; text-align: center; }
             .new-book-info h2 { font-size: 2.5em; }
         }
@@ -769,7 +729,6 @@
             }
             .nav-links.active { display: flex; }
             .hero h1 { font-size: 2.8em; }
-            .hero { padding: 50px 30px; }
             .author-image { width: 160px; height: 160px; }
             .author-initials { font-size: 50px; }
             .books-grid { grid-template-columns: 1fr; }
@@ -779,16 +738,13 @@
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.3em; }
-            .hero { padding: 40px 20px; }
             .logo { font-size: 1.4em; }
-            .section-header h2 { font-size: 2.5em; }
             .new-book-info h2 { font-size: 2em; }
             .new-book-cover { flex: 0 0 250px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-content">
             <a href="#home" class="logo">
@@ -928,7 +884,7 @@
             <div class="about-content">
                 <h2>About the Author</h2>
                 <div class="about-text">
-                    <p>Rabeè Luqmann is a German-Jordanian author with a passion for exploring the complexities of love, desire, survival, and the human condition across cultures. His work bridges Eastern and Western literary traditions, creating narratives that resonate with readers worldwide.</p>
+                    <p>Rabeè Luqmann is a German-Jordanian author exploring the complexities of love, desire, survival, and the human condition across cultures. His work bridges Eastern and Western literary traditions, creating narratives that resonate with readers worldwide.</p>
                     
                     <p>His debut novel, <em>Bound by Destiny</em>, captivated readers with its poignant portrayal of arranged marriage in India. With <em>Endorphin: The Ache of Wanting</em>, he plunged into the visceral depths of longing and obsessive emotion. <em>The Daughter Who Was Not Named</em> solidified his place as a bold voice in contemporary literary fiction.</p>
                     
@@ -938,7 +894,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -950,29 +905,20 @@
             <div class="footer-social">
                 <a href="https://www.instagram.com/rabeeluq" class="social-icon" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
-                    <span class="sr-only">Instagram</span>
                 </a>
                 <a href="https://www.tiktok.com/@drlrabea" class="social-icon" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-tiktok"></i>
-                    <span class="sr-only">TikTok</span>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fas fa-envelope"></i>
-                    <span class="sr-only">Email</span>
                 </a>
             </div>
             
             <p class="copyright">
                 © <span id="currentYear"></span> Rabeè Luqmann. All rights reserved.
-                <br>
-                <small>Designed for literary portfolio</small>
             </p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
 
@@ -982,40 +928,17 @@
             });
         }
 
-        // Close mobile menu when clicking a link
+        // Close menu on link click
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Active nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        
-        function highlightNavLink() {
-            const scrollY = window.pageYOffset;
-            
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-                
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    if (navLink) {
-                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-                        navLink.classList.add('active');
-                    }
-                }
-            });
-        }
-
-        window.addEventListener('scroll', highlightNavLink);
-
-        // Current year in footer
+        // Current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Books data with CORRECT Amazon covers
+        // Books data
         const books = [
             {
                 title: "Bound by Destiny",
@@ -1045,17 +968,13 @@
 
         // Render books
         const booksGrid = document.getElementById('booksGrid');
-        
         if (booksGrid) {
             books.forEach(book => {
                 const bookCard = document.createElement('div');
                 bookCard.className = 'book-card';
-                
                 bookCard.innerHTML = `
                     <div class="book-cover">
-                        <img src="${book.coverUrl}" 
-                             alt="${book.title} by Rabeè Luqmann" 
-                             loading="lazy">
+                        <img src="${book.coverUrl}" alt="${book.title}" loading="lazy">
                     </div>
                     <h3 class="book-title">${book.title}</h3>
                     <p class="book-description">${book.description}</p>
@@ -1063,53 +982,27 @@
                         <span class="book-genre">${book.genre}</span>
                         <span class="book-year">${book.year}</span>
                     </div>
-                    <a href="https://www.amazon.com/dp/${book.asin}" 
-                       class="kindle-btn" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
+                    <a href="https://www.amazon.com/dp/${book.asin}" class="kindle-btn" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-amazon"></i>
                         Available on Amazon
                     </a>
                 `;
-                
                 booksGrid.appendChild(bookCard);
             });
         }
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const href = this.getAttribute('href');
-                
                 if (href === '#') return;
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
-
-        // Add sr-only class for screen readers
-        const style = document.createElement('style');
-        style.textContent = `
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
