@@ -210,5 +210,37 @@
 
         window.onload = loadBooks;
     </script>
+    function loadBooks() {
+            const newReleaseArea = document.getElementById('new-release-section');
+            const gridArea = document.getElementById('books-grid');
+
+            // 1. Set the Newest Book (First in the array)
+            const latest = MY_BOOKS[0];
+            newReleaseArea.innerHTML = `
+                <div class="featured-book">
+                    <div class="badge">NEW RELEASE</div>
+                    <img src="${latest.image}" alt="${latest.title}">
+                    <div class="featured-info">
+                        <h2>${latest.title}</h2>
+                        <p style="font-style: italic; color: #666; margin-bottom: 15px;">${latest.subtitle}</p>
+                        <p>${latest.description}</p>
+                        <a href="${latest.amazonLink}" class="buy-btn" target="_blank">Order on Amazon</a>
+                    </div>
+                </div>
+            `;
+
+            // 2. Set the rest in the grid - FIXED THE LINK HERE
+            const others = MY_BOOKS.slice(1);
+            gridArea.innerHTML = others.map(book => `
+                <div class="book-card">
+                    <img src="${book.image}" alt="${book.title}">
+                    <h3>${book.title}</h3>
+                    <p style="font-size: 0.85em; color: #777; margin-bottom: 15px;">${book.genre} • ${book.year}</p>
+                    <a href="${book.amazonLink}" class="buy-btn" style="width: 100%;" target="_blank">View on Amazon</a>
+                </div>
+            `).join('');
+        }
+
+        window.onload = loadBooks;
 </body>
 </html>
