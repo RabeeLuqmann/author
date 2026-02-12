@@ -3,181 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rabeè Luqmann - Author Portfolio</title>
+    <title>Rabeè Luqmann | Official Author Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
-            --amazon-orange: #FF9900;
-            --amazon-navy: #232F3E;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary-gold: #FF9900;
+            --accent-blue: #00A8E1;
+            --dark-navy: #131921;
+            --deep-gray: #232f3e;
+            --soft-white: #fcfcfc;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg-gradient); 
-            color: #333; 
-            line-height: 1.6;
-            padding-top: 80px;
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--dark-navy);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Navigation */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 15px 0; border-bottom: 3px solid var(--amazon-orange);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.6rem; font-weight: 800; color: var(--amazon-navy); 
-            text-decoration: none; display: flex; align-items: center; gap: 10px;
+        /* --- BACKGROUND DECOR --- */
+        .bg-blob {
+            position: fixed; top: -10%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.05) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
         }
 
-        /* Hero Section */
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed; width: 100%; top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 900;
+            color: var(--dark-navy); text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; color: var(--dark-navy); 
+            font-weight: 500; font-size: 0.9rem; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        /* --- HERO SECTION --- */
         .hero {
-            text-align: center; padding: 80px 20px; 
-            background: white; border-radius: 40px;
-            margin: 40px 0; box-shadow: var(--card-shadow);
+            padding: 160px 0 100px;
+            background: white;
+            text-align: center;
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--amazon-navy); margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; color: #666; font-weight: 300; }
 
-        /* Featured Book (New Release) */
-        .featured-card {
-            background: white; border-radius: 30px; padding: 40px;
-            display: grid; grid-template-columns: 1fr 2fr; gap: 40px;
-            margin-bottom: 60px; box-shadow: var(--card-shadow);
-            border-left: 8px solid var(--amazon-orange);
-            position: relative;
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900; line-height: 1.1; margin-bottom: 20px;
         }
-        .badge {
-            position: absolute; top: 20px; right: 20px;
-            background: #e74c3c; color: white; padding: 5px 15px;
-            border-radius: 20px; font-weight: 600; font-size: 0.8rem;
-        }
-        .featured-cover img { width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .featured-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 15px; }
-        .featured-info blockquote { font-style: italic; border-left: 3px solid var(--amazon-orange); padding-left: 15px; margin: 20px 0; color: #555; }
 
-        /* All Books Grid */
-        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        
+        .hero-subtitle {
+            font-size: 1.1rem; text-transform: uppercase;
+            letter-spacing: 4px; color: var(--primary-gold);
+            font-weight: 700; margin-bottom: 30px;
+        }
+
+        /* --- BOOKS GRID (FIXED) --- */
+        .section-padding { padding: 100px 0; }
+        .grid-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+
         .book-card {
-            background: white; padding: 25px; border-radius: 20px;
-            text-align: center; transition: var(--transition);
-            border: 1px solid #eee; display: flex; flex-direction: column;
+            background: white; border-radius: 30px;
+            overflow: hidden; box-shadow: var(--shadow-lg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; border: 1px solid rgba(0,0,0,0.03);
+            display: flex; flex-direction: column;
         }
-        .book-card:hover { transform: translateY(-10px); box-shadow: var(--card-shadow); border-color: var(--amazon-orange); }
-        .book-card img { height: 280px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .book-card h3 { font-family: 'Playfair Display', serif; margin-bottom: 10px; height: 60px; display: flex; align-items: center; justify-content: center; }
-        .book-card p { font-size: 0.9rem; color: #777; margin-bottom: 20px; flex-grow: 1; }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--amazon-orange); color: white; padding: 12px 25px;
-            border-radius: 25px; text-decoration: none; font-weight: 600;
-            transition: var(--transition); border: none; cursor: pointer;
+        .book-card:hover { transform: translateY(-15px); }
+
+        .image-wrapper {
+            padding: 40px 40px 20px;
+            background: #f9f9f9;
+            display: flex; justify-content: center;
         }
-        .btn:hover { background: #e68a00; transform: translateY(-2px); }
 
-        /* Connect Section */
-        .connect-section {
-            background: var(--amazon-navy); color: white; padding: 60px 20px;
-            border-radius: 40px; text-align: center; margin-bottom: 60px;
+        .book-card img {
+            height: 350px; border-radius: 5px;
+            box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
-        .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
-        .social-links a { color: white; font-size: 2rem; transition: var(--transition); }
-        .social-links a:hover { color: var(--amazon-orange); }
 
-        /* About Section */
-        .about { background: white; padding: 60px 40px; border-radius: 30px; margin-bottom: 60px; box-shadow: var(--card-shadow); }
-        .about h2 { font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px; }
+        .book-details { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .book-details h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 15px; }
+        .book-details p { color: #666; font-size: 0.95rem; margin-bottom: 25px; }
+
+        .btn-buy {
+            margin-top: auto;
+            background: var(--dark-navy); color: white;
+            text-decoration: none; text-align: center;
+            padding: 15px; border-radius: 12px;
+            font-weight: 600; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        .btn-buy:hover { background: var(--primary-gold); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-navy); color: white;
+            padding: 80px 0 40px; text-align: center;
+        }
+
+        .social-wrap { display: flex; justify-content: center; gap: 20px; margin: 30px 0; }
+        .social-btn {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; text-decoration: none; transition: 0.3s;
+        }
+        .social-btn:hover { background: var(--primary-gold); transform: rotate(15deg); }
 
         @media (max-width: 768px) {
-            .featured-card { grid-template-columns: 1fr; text-align: center; }
-            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="container nav-content">
-        <a href="#" class="logo"><i class="fas fa-pen-nib"></i> Rabeè Luqmann</a>
-    </div>
-</header>
+    <div class="bg-blob"></div>
 
-<div class="container">
-    <section class="hero">
-        <h1>Rabeè Luqmann</h1>
-        <p>German-Jordanian Author • Physician • Storyteller</p>
-    </section>
-
-    <section class="featured-card">
-        <span class="badge">NEW RELEASE</span>
-        <div class="featured-cover">
-            <img src="https://m.media-amazon.com/images/I/71VfFkhGZDL._SL1500_.jpg" alt="The Wolf and the Gazelle">
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="brand">R. LUQMANN</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="mailto:contact@rabeeluqmann.com">Contact</a></li>
+            </ul>
         </div>
-        <div class="featured-info">
-            <h2>The Wolf and the Gazelle</h2>
-            <p><strong>A Literary Thriller of Survival and Trust</strong></p>
-            <blockquote>"He was a wolf surviving in the shadows. She was a gazelle fleeing a gilded cage."</blockquote>
-            <p>From Amman's interrogation rooms to the Balkan Mountains, two wounded souls forge trust in a world that offers none.</p>
-            <br>
-            <a href="https://www.amazon.com/dp/B0GCLSDJVF" target="_blank" class="btn">
-                <i class="fab fa-amazon"></i> Get it on Amazon
-            </a>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container animate__animated animate__fadeIn">
+            <p class="hero-subtitle">Physician & Award-Winning Author</p>
+            <h1>Crafting Worlds <br><em>Beyond Borders.</em></h1>
         </div>
     </section>
 
-    <h2 class="section-title">All Works</h2>
-    <div class="books-grid">
-        <div class="book-card">
-            <img src="https://m.media-amazon.com/images/I/71r9p-uS8JL._SL1500_.jpg" alt="Daughter">
-            <h3>The Daughter Who Was Not Named</h3>
-            <p>Exploring the dark heart of human relationships and hidden shadows.</p>
-            <a href="https://www.amazon.com/dp/B0D54SBT5X" target="_blank" class="btn">Amazon</a>
-        </div>
-        <div class="book-card">
-            <img src="https://m.media-amazon.com/images/I/61K8PclR-CL._SL1500_.jpg" alt="Endorphin">
-            <h3>Endorphin</h3>
-            <p>A visceral journey into the ache of wanting and the nature of desire.</p>
-            <a href="https://www.amazon.com/dp/B0CKTR6K58" target="_blank" class="btn">Amazon</a>
-        </div>
-        <div class="book-card">
-            <img src="https://m.media-amazon.com/images/I/71I9Y3O033L._SL1500_.jpg" alt="Destiny">
-            <h3>Bound by Destiny</h3>
-            <p>A story of arranged marriage and the tension of cultural duty.</p>
-            <a href="https://www.amazon.com/dp/B0BZF9XSV7" target="_blank" class="btn">Amazon</a>
-        </div>
-    </div>
+    <section class="section-padding" id="books">
+        <div class="grid-container">
+            
+            <div class="book-card">
+                <div class="image-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/71VfFkhGZDL._SL1500_.jpg" alt="The Wolf and the Gazelle">
+                </div>
+                <div class="book-details">
+                    <h3>The Wolf and the Gazelle</h3>
+                    <p>A high-stakes thriller of survival and impossible trust set against the backdrop of Amman and the Balkan mountains.</p>
+                    <a href="https://www.amazon.com/dp/B0GCLSDJVF" target="_blank" class="btn-buy">
+                        <i class="fab fa-amazon"></i> Shop on Amazon
+                    </a>
+                </div>
+            </div>
 
-    <section class="about">
-        <h2>About the Author</h2>
-        <p>Rabeè Luqmann is a German-Jordanian author and physician. His writing is marked by vivid cultural tapestries and powerful storytelling, exploring the tensions between duty and passion across the globe.</p>
+            <div class="book-card">
+                <div class="image-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/71r9p-uS8JL._SL1500_.jpg" alt="The Daughter Who Was Not Named">
+                </div>
+                <div class="book-details">
+                    <h3>The Daughter Who Was Not Named</h3>
+                    <p>A gripping exploration of family secrets, cultural shadows, and the weight of the past.</p>
+                    <a href="https://www.amazon.com/dp/B0D54SBT5X" target="_blank" class="btn-buy">
+                        <i class="fab fa-amazon"></i> Shop on Amazon
+                    </a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="image-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/61K8PclR-CL._SL1500_.jpg" alt="Endorphin">
+                </div>
+                <div class="book-details">
+                    <h3>Endorphin</h3>
+                    <p>A visceral dive into human desire, addiction, and the biochemical rush of longing.</p>
+                    <a href="https://www.amazon.com/dp/B0CKTR6K58" target="_blank" class="btn-buy">
+                        <i class="fab fa-amazon"></i> Shop on Amazon
+                    </a>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="image-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/71I9Y3O033L._SL1500_.jpg" alt="Bound by Destiny">
+                </div>
+                <div class="book-details">
+                    <h3>Bound by Destiny</h3>
+                    <p>A powerful story of duty vs. love within the traditional structures of an arranged marriage.</p>
+                    <a href="https://www.amazon.com/dp/B0BZF9XSV7" target="_blank" class="btn-buy">
+                        <i class="fab fa-amazon"></i> Shop on Amazon
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </section>
 
-    <section class="connect-section">
-        <h2>Connect With Me</h2>
-        <div class="social-links">
-            <a href="https://www.instagram.com/rabeeluq?igsh=ZHV2MHd2dDJudmVel" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@drlrabea" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <footer id="about">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2rem;">Rabeè Luqmann</h2>
+            <p style="opacity: 0.7; max-width: 600px; margin: 20px auto;">Connecting cultures through the power of medical precision and literary soul.</p>
+            
+            <div class="social-wrap">
+                <a href="https://www.instagram.com/rabeeluq?igsh=ZHV2MHd2dDJudmVel" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@drlrabea" class="social-btn" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Rabeè Luqmann. All rights reserved.</p>
         </div>
-        <p style="margin-top: 20px; opacity: 0.7;">&copy; 2026 Rabeè Luqmann</p>
-    </section>
-</div>
+    </footer>
 
 </body>
 </html>
