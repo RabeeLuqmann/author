@@ -1,248 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The official website of Rabeè Luqmann, German-Jordanian novelist exploring love, desire, freedom and the human condition across cultures. Discover his novels.">
-  <meta name="author" content="Rabeè Luqmann">
-  <meta name="theme-color" content="#17232d">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Rabeè Luqmann | Stories Without Borders">
-  <meta property="og:description" content="Novels exploring love, desire, freedom and the human condition across cultures.">
-  <title>Rabeè Luqmann | Stories Without Borders</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #17232d;
-      --muted: #64717a;
-      --paper: #f7f5f0;
-      --white: #fff;
-      --gold: #c58a42;
-      --gold-dark: #96612a;
-      --line: #e7e0d5;
-      --shadow: 0 18px 50px rgba(23,35,45,.09);
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "DM Sans", Arial, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.7; }
-    a { color: inherit; }
-    .site-header {
-      position: sticky; top: 0; z-index: 20; background: rgba(247,245,240,.94);
-      border-bottom: 1px solid rgba(23,35,45,.09); backdrop-filter: blur(14px);
-    }
-    .nav-wrap { max-width: 1160px; margin: auto; padding: 15px 26px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { text-decoration: none; font: 700 1.25rem var(--serif); letter-spacing: -.02em; white-space: nowrap; }
-    .brand span { color: var(--gold-dark); }
-    nav { display: flex; align-items: center; gap: 26px; }
-    nav a { text-decoration: none; color: #46525b; font-size: .91rem; font-weight: 600; }
-    nav a:hover, nav a:focus-visible { color: var(--gold-dark); }
-    .nav-cta { padding: 9px 16px; border: 1px solid var(--gold); border-radius: 3px; color: var(--gold-dark); }
-    .wrap { width: min(1160px, calc(100% - 52px)); margin: auto; }
-    .hero { padding: 100px 0 92px; background: var(--ink); color: white; position: relative; overflow: hidden; }
-    .hero:after { content: ""; position: absolute; width: 520px; height: 520px; border: 1px solid rgba(197,138,66,.25); border-radius: 50%; right: -160px; top: -220px; box-shadow: 0 0 0 55px rgba(197,138,66,.035), 0 0 0 110px rgba(197,138,66,.025); }
-    .hero-inner { position: relative; z-index: 1; max-width: 820px; }
-    .eyebrow { color: #e1b77e; text-transform: uppercase; letter-spacing: .19em; font-size: .76rem; font-weight: 700; }
-    h1, h2, h3 { font-family: var(--serif); line-height: 1.15; }
-    h1 { font-size: clamp(3rem, 7vw, 5.8rem); font-weight: 600; letter-spacing: -.045em; margin: 18px 0 14px; }
-    .hero-tagline { color: #e8e6e1; font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 660px; margin: 0 0 32px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
-    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 47px; padding: 11px 21px; text-decoration: none; border: 1px solid var(--gold); border-radius: 3px; font-weight: 700; font-size: .92rem; transition: .2s ease; }
-    .button-primary { background: var(--gold); color: #1c252b; }
-    .button-primary:hover { background: #d9a35e; border-color: #d9a35e; transform: translateY(-2px); }
-    .button-outline { color: white; border-color: rgba(255,255,255,.45); }
-    .button-outline:hover { border-color: white; background: rgba(255,255,255,.08); }
-    section { padding: 82px 0; }
-    .section-kicker { color: var(--gold-dark); text-transform: uppercase; letter-spacing: .17em; font-size: .72rem; font-weight: 700; margin-bottom: 12px; }
-    .section-heading { font-size: clamp(2.1rem, 4vw, 3.2rem); font-weight: 600; letter-spacing: -.025em; margin: 0 0 15px; }
-    .section-intro { max-width: 680px; color: var(--muted); margin: 0; }
-    .featured { display: grid; grid-template-columns: minmax(230px, 340px) 1fr; align-items: center; gap: clamp(35px, 7vw, 86px); }
-    .featured-cover { background: #e8e2d8; padding: 14px; box-shadow: var(--shadow); max-width: 340px; }
-    .featured-cover img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; }
-    .featured-copy h2 { font-size: clamp(2.3rem, 4.5vw, 3.8rem); margin: 10px 0 8px; }
-    .subtitle { color: var(--gold-dark); font-style: italic; margin: 0 0 23px; }
-    .featured-copy p { color: #4f5b63; }
-    .quote { border-left: 2px solid var(--gold); padding: 4px 0 4px 19px; color: #58636b; font: italic 1.12rem/1.65 var(--serif); margin: 25px 0; }
-    .books-section { background: #efede7; }
-    .books-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
-    .book-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-    .book-card { background: var(--white); padding: 22px 20px 24px; border: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; transition: .2s ease; }
-    .book-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .book-cover { width: min(100%, 190px); aspect-ratio: 2 / 3; margin: 0 auto 22px; background: #e9e5de; box-shadow: 0 9px 20px rgba(0,0,0,.12); }
-    .book-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .book-card h3 { font-size: 1.35rem; margin: 0 0 11px; }
-    .book-card p { color: var(--muted); font-size: .91rem; margin: 0 0 22px; flex: 1; }
-    .book-card .button { width: 100%; color: var(--gold-dark); }
-    .book-card .button:hover { background: #fbf5eb; }
-    .about-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; align-items: start; }
-    .about-note { font: italic 1.55rem/1.45 var(--serif); color: var(--gold-dark); margin: 4px 0 0; }
-    .about-copy p { color: #536069; margin: 0 0 18px; }
-    .connect { background: var(--ink); color: white; }
-    .connect .section-intro { color: #c5cbd0; }
-    .connect-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
-    .connect-links a { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,.35); padding: 11px 18px; border-radius: 3px; font-weight: 600; }
-    .connect-links a:hover { border-color: var(--gold); color: #e7bd86; }
-    footer { padding: 28px 0; color: #6e777d; font-size: .85rem; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    :focus-visible { outline: 3px solid #d9a35e; outline-offset: 3px; }
-    @media (max-width: 900px) {
-      .book-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .about-grid { grid-template-columns: 1fr; gap: 22px; }
-      .about-note { max-width: 500px; }
-    }
-    @media (max-width: 680px) {
-      .nav-wrap { align-items: flex-start; flex-direction: column; gap: 10px; padding: 12px 20px; }
-      nav { width: 100%; gap: 18px; overflow-x: auto; padding: 2px 0 5px; }
-      nav a { white-space: nowrap; font-size: .84rem; }
-      .nav-cta { padding: 5px 10px; }
-      .wrap { width: min(100% - 40px, 560px); }
-      .hero { padding: 75px 0 70px; }
-      section { padding: 62px 0; }
-      .featured { grid-template-columns: 1fr; gap: 32px; }
-      .featured-cover { width: min(78%, 280px); margin: auto; }
-      .books-head { display: block; }
-      .book-grid { gap: 13px; }
-      .book-card { padding: 16px 13px 18px; }
-      .book-card h3 { font-size: 1.12rem; }
-      .book-card p { font-size: .85rem; }
-      .book-card .button { font-size: .82rem; padding: 9px 8px; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 390px) {
-      .book-grid { grid-template-columns: 1fr; }
-      .book-card { padding: 22px; }
-      .book-card h3 { font-size: 1.3rem; }
-      .book-card p { font-size: .92rem; }
-      .book-card .button { font-size: .9rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Rabeè Luqmann — stories of love, desire and the human condition across cultures.">
+<title>Rabeè Luqmann | Stories Without Borders</title>
+<style>
+:root{--ink:#20372e;--green:#29483b;--gold:#b18a4d;--cream:#f5f0e6;--paper:#fffdf8;--muted:#6c6b62}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+a{color:inherit;text-decoration:none}.topbar{position:absolute;z-index:5;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 7%;color:#fff}
+.brand{font-size:19px;letter-spacing:.08em}.nav{display:flex;gap:28px;font:12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}.nav a{padding-bottom:5px;border-bottom:1px solid transparent}.nav a:hover{border-color:#d6b77e}
+.hero{min-height:690px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white;background:linear-gradient(180deg,rgba(13,28,24,.46),rgba(13,28,24,.28) 52%,rgba(13,28,24,.65)),url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=85') center 48%/cover}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:150px;background:linear-gradient(transparent,var(--cream))}
+.hero-content{position:relative;z-index:2;margin-top:28px;padding:0 20px}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#e3c58f}.hero h1{font-size:clamp(48px,7vw,88px);font-weight:400;letter-spacing:.025em;margin:16px 0 8px;text-shadow:0 3px 24px #17251f}.tagline{font-size:clamp(19px,2.6vw,28px);font-style:italic;margin:0 0 13px}.subline{font:14px Arial,sans-serif;letter-spacing:.04em;color:#f1eee7}.cta{display:inline-block;margin-top:30px;padding:14px 25px;background:#b18a4d;color:#fff;font:11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:.2s}.cta:hover{background:#8d6c3b}
+.floating-books{position:absolute;z-index:2;inset:0;pointer-events:none}.book-float{position:absolute;width:clamp(78px,10vw,138px);height:auto;filter:drop-shadow(0 14px 16px rgba(0,0,0,.48));border:1px solid rgba(255,255,255,.28);transition:transform .3s}.book-float img{display:block;width:100%;height:auto}.b1{left:7%;top:34%;transform:rotate(-9deg)}.b2{left:20%;top:61%;transform:rotate(7deg);width:clamp(68px,8vw,112px)}.b3{right:8%;top:31%;transform:rotate(8deg)}.b4{right:21%;top:63%;transform:rotate(-7deg);width:clamp(70px,8.5vw,116px)}.b5{left:47%;top:13%;transform:rotate(-3deg);width:clamp(62px,7vw,94px)}
+.section{padding:88px 7%;max-width:1400px;margin:auto}.section-head{text-align:center;margin-bottom:44px}.kicker{font:11px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}h2{font-size:42px;font-weight:400;margin:12px 0;color:var(--green)}.intro{max-width:650px;margin:0 auto;color:var(--muted);font:15px/1.8 Arial,sans-serif}
+.books{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px}.book{min-width:0;text-align:center}.cover-link{display:block;max-width:220px;margin:0 auto 20px;perspective:800px}.cover{width:100%;aspect-ratio:2/3;object-fit:cover;background:#e7dfd0;box-shadow:0 13px 26px rgba(38,47,39,.18);transition:transform .25s,box-shadow .25s}.cover-link:hover .cover{transform:translateY(-7px) rotateY(-3deg);box-shadow:0 20px 32px rgba(38,47,39,.25)}.book h3{font-size:21px;font-weight:400;line-height:1.25;margin:0 0 10px}.book p{font:13px/1.65 Arial,sans-serif;color:var(--muted);margin:0 auto 14px;max-width:260px}.read{font:10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#89683b;border-bottom:1px solid #c8ad80;padding-bottom:4px}
+.about{background:var(--green);color:#f8f3e8;max-width:none;padding:88px 7%}.about-inner{max-width:900px;margin:auto;text-align:center}.about h2{color:#fff}.about p{font:16px/1.9 Arial,sans-serif;color:#e4e1d7;max-width:740px;margin:20px auto}
+.quote{padding:80px 20px;text-align:center;background:#e9e0d0}.quote p{font-size:clamp(23px,3vw,34px);font-style:italic;color:var(--green);max-width:850px;margin:0 auto;line-height:1.45}
+.contact{text-align:center;padding-bottom:100px}.contact p{font:14px/1.8 Arial,sans-serif;color:var(--muted)}.contact a{color:#89683b;border-bottom:1px solid #c8ad80}
+footer{background:#1d332a;color:#d9d3c7;text-align:center;padding:25px;font:11px Arial,sans-serif;letter-spacing:.08em}
+@media(max-width:900px){.books{grid-template-columns:repeat(3,1fr)}.hero{min-height:620px}.b2{left:10%}.b4{right:10%}}
+@media(max-width:600px){.topbar{padding:18px 5%;align-items:flex-start}.brand{font-size:15px}.nav{gap:12px;font-size:9px}.hero{min-height:590px}.hero-content{margin-top:0}.floating-books{opacity:.9}.b1{left:3%;top:22%}.b2{left:5%;top:70%}.b3{right:3%;top:23%}.b4{right:5%;top:70%}.b5{top:10%;left:45%}.books{grid-template-columns:repeat(2,1fr);gap:34px 18px}.section{padding:65px 6%}h2{font-size:34px}.about{padding:65px 7%}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="#home">Rabeè <span>Luqmann</span></a>
-      <nav aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#featured">Featured</a>
-        <a href="#books">Books</a>
-        <a href="#about">About</a>
-        <a class="nav-cta" href="#connect">Connect</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="wrap hero-inner">
-        <div class="eyebrow">German-Jordanian novelist</div>
-        <h1>Stories Without<br> Borders.</h1>
-        <p class="hero-tagline">Exploring love, desire, freedom and the human condition across cultures.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#books">Discover the books</a>
-          <a class="button button-outline" href="#about">Meet the author</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="featured">
-      <div class="wrap featured">
-        <div class="featured-cover">
-          <img src="https://m.media-amazon.com/images/I/71VfFkhGZDL._SL1500_.jpg" alt="The Wolf and the Gazelle book cover" loading="eager">
-        </div>
-        <div class="featured-copy">
-          <div class="section-kicker">Featured novel</div>
-          <h2>The Wolf and the Gazelle</h2>
-          <p class="subtitle">A literary thriller of survival and trust</p>
-          <p class="quote">“He was a wolf surviving in the shadows. She was a gazelle fleeing a gilded cage. Together, they must outrun the hunters.”</p>
-          <p>Sami is a red-haired Jordanian labourer, hardened by loss. After intervening when a woman is subjected to police brutality, he is captured, tortured and forced to flee Jordan with little more than a forged passport and the will to survive.</p>
-          <p>Farrah, a princess from Dubai escaping a forced marriage, is on the run too. In Albania, Sami finds her among the displaced, with mercenaries closing in. Their dangerous journey through the Balkans becomes a story of survival, trust and two wounded people finding strength together.</p>
-          <a class="button button-primary" href="https://www.amazon.com/dp/B0GCLSDJVF" target="_blank" rel="noopener noreferrer">Find the novel on Amazon</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="books-section" id="books">
-      <div class="wrap">
-        <div class="books-head">
-          <div>
-            <div class="section-kicker">The novels</div>
-            <h2 class="section-heading">Books by Rabeè Luqmann</h2>
-            <p class="section-intro">Four stories, different worlds, and the lives that unfold where love, identity, desire and survival meet.</p>
-          </div>
-        </div>
-        <div class="book-grid">
-          <article class="book-card">
-            <div class="book-cover"><img src="https://m.media-amazon.com/images/I/81pQYz+hRcL._SL1500_.jpg" alt="Bound by Destiny book cover" loading="lazy"></div>
-            <h3>Bound by Destiny</h3>
-            <p>In modern India, an arranged marriage brings tradition and personal choice into conflict. A story about duty, expectation and the uncertain path to love.</p>
-            <a class="button" href="https://www.amazon.com/dp/B0DW48BRR7" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-          </article>
-          <article class="book-card">
-            <div class="book-cover"><img src="https://m.media-amazon.com/images/I/81HzY-DQuLL._SL1500_.jpg" alt="Endorphin: The Ache of Wanting book cover" loading="lazy"></div>
-            <h3>Endorphin: The Ache of Wanting</h3>
-            <p>A charged exploration of desire and intimacy, following three people whose relationships test the boundaries between longing, love and emotional need.</p>
-            <a class="button" href="https://www.amazon.com/dp/B0F4PMYR73" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-          </article>
-          <article class="book-card">
-            <div class="book-cover"><img src="https://m.media-amazon.com/images/I/61wWvzk3PPL._SL1499_.jpg" alt="The Daughter Who Was Not Named book cover" loading="lazy"></div>
-            <h3>The Daughter Who Was Not Named</h3>
-            <p>Inspired by real events in Gujarat, India, this story confronts the rejection of a girl child and the human cost of prejudice, silence and unequal worth.</p>
-            <a class="button" href="https://www.amazon.com/dp/B0F9V9MP8V" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-          </article>
-          <article class="book-card">
-            <div class="book-cover"><img src="https://m.media-amazon.com/images/I/71VfFkhGZDL._SL1500_.jpg" alt="The Wolf and the Gazelle book cover" loading="lazy"></div>
-            <h3>The Wolf and the Gazelle</h3>
-            <p>A Jordanian labourer and a Dubai princess flee danger across the Balkans in a literary thriller about courage, trust and the fight for freedom.</p>
-            <a class="button" href="https://www.amazon.com/dp/B0GCLSDJVF" target="_blank" rel="noopener noreferrer">View on Amazon</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap about-grid">
-        <div>
-          <div class="section-kicker">A little about me</div>
-          <h2 class="section-heading">Across cultures.<br>Into the human heart.</h2>
-          <p class="about-note">“Every story begins with a human truth.”</p>
-        </div>
-        <div class="about-copy">
-          <p>Rabeè Luqmann is a German-Jordanian novelist whose work explores love, desire, freedom and the human condition across cultures. His stories move between different societies and intimate worlds, asking how people navigate the forces that shape their lives.</p>
-          <p>From the tensions between tradition and personal choice in <em>Bound by Destiny</em>, to the complicated emotional landscape of <em>Endorphin: The Ache of Wanting</em>, Luqmann's novels examine the choices people make when longing, loyalty and expectation collide.</p>
-          <p><em>The Daughter Who Was Not Named</em> turns to a story inspired by real events, while <em>The Wolf and the Gazelle</em> explores survival, trust and the pursuit of freedom across borders.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="connect" id="connect">
-      <div class="wrap">
-        <div class="section-kicker">Stay in touch</div>
-        <h2 class="section-heading">Follow the stories.</h2>
-        <p class="section-intro">Writing updates, book news and occasional glimpses behind the scenes.</p>
-        <div class="connect-links">
-          <a href="https://www.instagram.com/rabeeluq?igsh=ZHV2MHd2dDJudmVel" target="_blank" rel="noopener noreferrer">Instagram · @rabeeluq</a>
-          <a href="https://www.tiktok.com/@drlrabea" target="_blank" rel="noopener noreferrer">TikTok · @drlrabea</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>© <span id="year">2026</span> Rabeè Luqmann. All rights reserved.</span>
-      <a href="#home">Back to top ↑</a>
-    </div>
-  </footer>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<header class="topbar">
+  <a class="brand" href="#top">RABEÈ LUQMANN</a>
+  <nav class="nav"><a href="#books">Books</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="hero" id="top">
+  <div class="floating-books" aria-label="Featured books">
+    <a class="book-float b1" href="https://a.co/d/02f9pOpB" aria-label="The Wolf and the Gazelle"><img src="COVER_WOLF" alt="The Wolf and the Gazelle cover"></a>
+    <a class="book-float b2" href="https://a.co/d/00w4gliu" aria-label="The Daughter Who Was Not Named"><img src="COVER_DAUGHTER" alt="The Daughter Who Was Not Named cover"></a>
+    <a class="book-float b3" href="https://a.co/d/0e2HX9OU" aria-label="Endorphins"><img src="COVER_ENDORPHINS" alt="Endorphins cover"></a>
+    <a class="book-float b4" href="https://a.co/d/0aeJkrEm" aria-label="Bound by Destiny"><img src="COVER_BOUND" alt="Bound by Destiny cover"></a>
+    <a class="book-float b5" href="https://a.co/d/03FTYXDk" aria-label="Die Töchter ohne Namen"><img src="COVER_GERMAN" alt="Die Töchter ohne Namen cover"></a>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">Author &amp; Storyteller</div>
+    <h1>Rabeè Luqmann</h1>
+    <p class="tagline">Stories Without Borders.</p>
+    <p class="subline">Love, desire and the human condition across cultures.</p>
+    <a class="cta" href="#books">Explore the Books</a>
+  </div>
+</section>
+<section class="section" id="books">
+  <div class="section-head"><div class="kicker">The collection</div><h2>Books by Rabeè Luqmann</h2><p class="intro">Stories that cross borders, challenge conventions and explore the ties that bind us.</p></div>
+  <div class="books">
+    <article class="book"><a class="cover-link" href="https://a.co/d/02f9pOpB"><img class="cover" src="COVER_WOLF" alt="The Wolf and the Gazelle book cover"></a><h3><a href="https://a.co/d/02f9pOpB">The Wolf and the Gazelle</a></h3><p>A journey of love, survival and freedom, where two people from different worlds fight to build a life together.</p><a class="read" href="https://a.co/d/02f9pOpB">Discover the book</a></article>
+    <article class="book"><a class="cover-link" href="https://a.co/d/00w4gliu"><img class="cover" src="COVER_DAUGHTER" alt="The Daughter Who Was Not Named book cover"></a><h3><a href="https://a.co/d/00w4gliu">The Daughter Who Was Not Named</a></h3><p>Inspired by events in Gujarat, a young man risks everything to rescue newborn girls and confront a hidden injustice.</p><a class="read" href="https://a.co/d/00w4gliu">Discover the book</a></article>
+    <article class="book"><a class="cover-link" href="https://a.co/d/0e2HX9OU"><img class="cover" src="COVER_ENDORPHINS" alt="Endorphins: The Ache of Wanting book cover"></a><h3><a href="https://a.co/d/0e2HX9OU">Endorphins: The Ache of Wanting</a></h3><p>An intimate story of desire, connection and difficult choices, where love and vulnerability intertwine.</p><a class="read" href="https://a.co/d/0e2HX9OU">Discover the book</a></article>
+    <article class="book"><a class="cover-link" href="https://a.co/d/0aeJkrEm"><img class="cover" src="COVER_BOUND" alt="Bound by Destiny book cover"></a><h3><a href="https://a.co/d/0aeJkrEm">Bound by Destiny</a></h3><p>An arranged marriage in India brings tradition and modern life into a moving story of choice, identity and love.</p><a class="read" href="https://a.co/d/0aeJkrEm">Discover the book</a></article>
+    <article class="book"><a class="cover-link" href="https://a.co/d/03FTYXDk"><img class="cover" src="COVER_GERMAN" alt="Die Töchter ohne Namen book cover"></a><h3><a href="https://a.co/d/03FTYXDk">Die Töchter ohne Namen</a></h3><p>Die deutsche Ausgabe der erschütternden Geschichte über gerettete Mädchen, stille Hoffnung und unerschütterliche Liebe.</p><a class="read" href="https://a.co/d/03FTYXDk">Auf Amazon ansehen</a></article>
+  </div>
+</section>
+<section class="about" id="about"><div class="about-inner"><div class="kicker">A little about the author</div><h2>Stories shaped by many worlds</h2><p>Rabeè Luqmann is a German-Jordanian author whose work explores love, desire and the human condition across cultures. His stories move between places and perspectives, bringing together questions of identity, belonging, freedom and the choices that define us.</p></div></section>
+<section class="quote"><p>“Every life carries a story. Some stories cross borders; others change the way we see the world.”</p></section>
+<section class="section contact" id="contact"><div class="kicker">Get in touch</div><h2>Stay connected</h2><p>For readers, book clubs, interviews and enquiries:</p><p><a href="mailto:author@rabeeluqmann.com">Contact the author</a></p></section>
+<footer>© 2026 Rabeè Luqmann · Stories Without Borders</footer>
 </body>
 </html>
-
