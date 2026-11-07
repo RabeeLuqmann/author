@@ -1,51 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Rabeè Luqmann — stories of love, desire and the human condition across cultures.">
-<title>Rabeè Luqmann | Stories Without Borders</title>
-<style>
-:root{--ink:#20372e;--green:#29483b;--gold:#b18a4d;--cream:#f5f0e6;--paper:#fffdf8;--muted:#6c6b62}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
-a{color:inherit;text-decoration:none}.topbar{position:absolute;z-index:5;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 7%;color:#fff}
-.brand{font-size:19px;letter-spacing:.08em}.nav{display:flex;gap:28px;font:12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}.nav a{padding-bottom:5px;border-bottom:1px solid transparent}.nav a:hover{border-color:#d6b77e}
-.hero{min-height:690px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white;background:linear-gradient(180deg,rgba(13,28,24,.46),rgba(13,28,24,.28) 52%,rgba(13,28,24,.65)),url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=85') center 48%/cover}
-.hero:after{content:"";position:absolute;inset:auto 0 0;height:150px;background:linear-gradient(transparent,var(--cream))}
-.hero-content{position:relative;z-index:3;margin-top:28px;padding:0 20px}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#e3c58f}.hero h1{font-size:clamp(48px,7vw,88px);font-weight:400;letter-spacing:.025em;margin:16px 0 8px;text-shadow:0 3px 24px #17251f}.tagline{font-size:clamp(19px,2.6vw,28px);font-style:italic;margin:0 0 13px}.subline{font:14px Arial,sans-serif;letter-spacing:.04em;color:#f1eee7}.cta{display:inline-block;margin-top:30px;padding:14px 25px;background:#b18a4d;color:#fff;font:11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:.2s}.cta:hover{background:#8d6c3b}
-.floating-books{position:absolute;z-index:2;inset:0;pointer-events:none}.book-float{position:absolute;display:block;width:clamp(78px,10vw,138px);height:auto;pointer-events:auto;filter:drop-shadow(0 14px 16px rgba(0,0,0,.48));border:1px solid rgba(255,255,255,.28);transition:transform .3s}.book-float img{display:block;width:100%;height:auto}.b1{left:8%;top:34%;transform:rotate(-9deg)}.b2{right:9%;top:31%;transform:rotate(8deg)}.book-float:hover{z-index:4;filter:drop-shadow(0 18px 20px rgba(0,0,0,.6))}
-.section{padding:88px 7%;max-width:1400px;margin:auto}.section-head{text-align:center;margin-bottom:44px}.kicker{font:11px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}h2{font-size:42px;font-weight:400;margin:12px 0;color:var(--green)}.intro{max-width:650px;margin:0 auto;color:var(--muted);font:15px/1.8 Arial,sans-serif}
-.books{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px}.book{min-width:0;text-align:center}.cover-link{display:block;max-width:220px;margin:0 auto 20px;perspective:800px}.cover{width:100%;aspect-ratio:2/3;object-fit:cover;background:#e7dfd0;box-shadow:0 13px 26px rgba(38,47,39,.18);transition:transform .25s,box-shadow .25s}.cover-link:hover .cover{transform:translateY(-7px) rotateY(-3deg);box-shadow:0 20px 32px rgba(38,47,39,.25)}.cover-placeholder{width:100%;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;padding:18px;background:linear-gradient(145deg,#29483b,#172a23);color:#e9d2a5;box-shadow:0 13px 26px rgba(38,47,39,.18);font-size:22px;line-height:1.35;text-align:center}.book h3{font-size:21px;font-weight:400;line-height:1.25;margin:0 0 10px}.book p{font:13px/1.65 Arial,sans-serif;color:var(--muted);margin:0 auto 14px;max-width:260px}.read{font:10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#89683b;border-bottom:1px solid #c8ad80;padding-bottom:4px}
-.about{background:var(--green);color:#f8f3e8;max-width:none;padding:88px 7%}.about-inner{max-width:900px;margin:auto;text-align:center}.about h2{color:#fff}.about p{font:16px/1.9 Arial,sans-serif;color:#e4e1d7;max-width:740px;margin:20px auto}
-.quote{padding:80px 20px;text-align:center;background:#e9e0d0}.quote p{font-size:clamp(23px,3vw,34px);font-style:italic;color:var(--green);max-width:850px;margin:0 auto;line-height:1.45}
-.contact{text-align:center;padding-bottom:100px}.contact p{font:14px/1.8 Arial,sans-serif;color:var(--muted)}.contact a{color:#89683b;border-bottom:1px solid #c8ad80}.email{font-size:17px!important;letter-spacing:.03em}.social-note{font:12px Arial,sans-serif!important;color:#777!important;margin-top:25px}
-footer{background:#1d332a;color:#d9d3c7;text-align:center;padding:25px;font:11px Arial,sans-serif;letter-spacing:.08em}
-@media(max-width:1050px){.books{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.hero{min-height:620px}.b1{left:4%}.b2{right:4%}}
-@media(max-width:600px){.topbar{padding:18px 5%;align-items:flex-start}.brand{font-size:15px}.nav{gap:12px;font-size:9px}.hero{min-height:590px}.hero-content{margin-top:0}.b1{left:3%;top:22%;width:76px}.b2{right:3%;top:23%;width:76px}.books{grid-template-columns:repeat(2,1fr);gap:34px 18px}.section{padding:65px 6%}h2{font-size:34px}.about{padding:65px 7%}}
-</style>
-</head>
-<body>
-<header class="topbar"><a class="brand" href="#top">RABEÈ LUQMANN</a><nav class="nav"><a href="#books">Books</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
-<section class="hero" id="top">
-  <div class="floating-books" aria-label="Featured books">
-    <a class="book-float b1" href="https://a.co/d/02f9pOpB" aria-label="The Wolf and the Gazelle"><img src="The_Wolf_and_the_Gazelle_Part_One_300dpi.png" alt="The Wolf and the Gazelle, Part One cover"></a>
-    <a class="book-float b2" href="https://a.co/d/0e2HX9OU" aria-label="Endorphins"><img src="Golden%20Sunset%20Romance%20Cove%20(1).png" alt="Endorphins: The Ache of Wanting cover"></a>
-  </div>
-  <div class="hero-content"><div class="eyebrow">Author &amp; Storyteller</div><h1>Rabeè Luqmann</h1><p class="tagline">Stories Without Borders.</p><p class="subline">Love, desire and the human condition across cultures.</p><a class="cta" href="#books">Explore the Books</a></div>
-</section>
-<section class="section" id="books"><div class="section-head"><div class="kicker">The collection</div><h2>Books by Rabeè Luqmann</h2><p class="intro">Stories that cross borders, challenge conventions and explore the ties that bind us.</p></div>
-  <div class="books">
-    <article class="book"><a class="cover-link" href="https://a.co/d/02f9pOpB"><img class="cover" src="The_Wolf_and_the_Gazelle_Part_One_300dpi.png" alt="The Wolf and the Gazelle book cover"></a><h3><a href="https://a.co/d/02f9pOpB">The Wolf and the Gazelle</a></h3><p>A journey of love, survival and freedom, where two people from different worlds fight to build a life together.</p><a class="read" href="https://a.co/d/02f9pOpB">Discover the book</a></article>
-    <article class="book"><div class="cover-link"><div class="cover-placeholder">The Daughter<br>Who Was<br>Not Named</div></div><h3>The Daughter Who Was Not Named</h3><p>Inspired by events in Gujarat, a young man risks everything to rescue newborn girls and confront a hidden injustice.</p><span class="read">Cover coming soon</span></article>
-    <article class="book"><a class="cover-link" href="https://a.co/d/0e2HX9OU"><img class="cover" src="Golden%20Sunset%20Romance%20Cove%20(1).png" alt="Endorphins: The Ache of Wanting book cover"></a><h3><a href="https://a.co/d/0e2HX9OU">Endorphins: The Ache of Wanting</a></h3><p>An intimate story of desire, connection and difficult choices, where love and vulnerability intertwine.</p><a class="read" href="https://a.co/d/0e2HX9OU">Discover the book</a></article>
-    <article class="book"><div class="cover-link"><div class="cover-placeholder">Bound by<br>Destiny</div></div><h3>Bound by Destiny</h3><p>An arranged marriage in India brings tradition and modern life into a moving story of choice, identity and love.</p><span class="read">Cover coming soon</span></article>
-    <article class="book"><div class="cover-link"><div class="cover-placeholder">Die Töchter<br>ohne Namen</div></div><h3>Die Töchter ohne Namen</h3><p>Die deutsche Ausgabe der Geschichte über gerettete Mädchen, stille Hoffnung und unerschütterliche Liebe.</p><span class="read">Cover coming soon</span></article>
-  </div>
-</section>
-<section class="about" id="about"><div class="about-inner"><div class="kicker">A little about the author</div><h2>Stories shaped by many worlds</h2><p>Rabeè Luqmann is a German-Jordanian author whose work explores love, desire and the human condition across cultures. His stories move between places and perspectives, bringing together questions of identity, belonging, freedom and the choices that define us.</p></div></section>
-<section class="quote"><p>“Every life carries a story. Some stories cross borders; others change the way we see the world.”</p></section>
-<section class="section contact" id="contact"><div class="kicker">Get in touch</div><h2>Stay connected</h2><p>For readers, book clubs, interviews and enquiries:</p><p class="email"><a href="mailto:luqmann@tutanota.com">luqmann@tutanota.com</a></p><p class="social-note">Social media links will be added with your profile addresses.</p></section>
-<footer>© 2026 Rabeè Luqmann · Stories Without Borders</footer>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabeè Luqmann - Author Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official website of Rabeè Luqmann - German-Jordanian author exploring love, desire, and human relationships. Discover all books on Amazon.">
+    <meta name="keywords" content="Rabeè Luqmann, author, books, novelist, Bound by Destiny, Endorphins, The Daughter Who Was Not Named, The Wolf and the Gazelle, Die Töchter ohne Namen">
+    <meta name="author" content="Rabeè Luqmann">
+    <meta property="og:title" content="Rabeè Luqmann - Author">
+    <meta property="og:description" content="Explore the literary works of Rabeè Luqmann on Amazon">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #FF9900;
+            --primary-dark: #FF6600;
+            --secondary: #232F3E;
+            --accent: #146EB4;
+            --light-accent: #FFD700;
+            --dark: #131A22;
+            --light: #f8f9fa;
+            --gray: #565959;
+            --light-gray: #e9ecef;
+            --success: #00a65a;
+            --error: #dc3545;
+            --warning: #ffc107;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #0b0f19 0%, #1a252f 50%, #131A22 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+            color: #e4e8f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(19, 26, 34, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #ffffff;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #cbd5e1;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(255, 153, 0, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(255, 153, 0, 0.15);
+        }
+
+        /* Cinematic Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(35, 47, 62, 0.8), rgba(19, 26, 34
