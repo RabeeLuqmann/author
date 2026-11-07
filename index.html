@@ -125,63 +125,171 @@
             background: rgba(255, 153, 0, 0.15);
         }
 
-        /* Hero Section */
+        /* Hero Section - Cinematic */
         .hero {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
-            backdrop-filter: blur(20px);
-            padding: 80px 60px;
-            text-align: center;
-            border-radius: 30px;
-            margin-bottom: 60px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
             position: relative;
+            min-height: 640px;
+            padding: 80px 40px;
+            margin-bottom: 60px;
+            border-radius: 30px;
             overflow: hidden;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(ellipse at 50% 40%, rgba(255, 153, 0, 0.18), transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(35, 47, 62, 0.12), transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(155, 89, 182, 0.12), transparent 55%),
+                linear-gradient(135deg, #fdfdfd 0%, #eceff5 100%);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), #9b59b6);
+            z-index: 3;
         }
 
-        .author-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 70px;
-            font-weight: bold;
-            border: 5px solid white;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 620px;
+            height: 620px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 35%, transparent 70%);
+            filter: blur(10px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-books {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-book {
+            position: absolute;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.28);
+            border: 4px solid #fff;
+            animation: floatBook 9s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .hero-book img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-book.b1 {
+            width: 190px; height: 285px;
+            top: 8%; left: 6%;
+            --r: -11deg;
+            transform: rotate(-11deg);
+            z-index: 2;
+            animation-delay: 0s;
+        }
+        .hero-book.b2 {
+            width: 170px; height: 255px;
+            top: 12%; right: 7%;
+            --r: 9deg;
+            transform: rotate(9deg);
+            z-index: 2;
+            animation-delay: 1.5s;
+        }
+        .hero-book.b3 {
+            width: 175px; height: 262px;
+            bottom: 7%; left: 11%;
+            --r: 7deg;
+            transform: rotate(7deg);
+            z-index: 2;
+            animation-delay: 3s;
+        }
+        .hero-book.b4 {
+            width: 195px; height: 292px;
+            bottom: 6%; right: 8%;
+            --r: -8deg;
+            transform: rotate(-8deg);
+            z-index: 2;
+            animation-delay: 4.5s;
+        }
+        .hero-book.far1 {
+            width: 130px; height: 195px;
+            top: 40%; left: 1%;
+            --r: -18deg;
+            transform: rotate(-18deg);
+            filter: blur(2.5px) brightness(0.92);
+            z-index: 1;
+            opacity: 0.85;
+            animation-delay: 2s;
+        }
+        .hero-book.far2 {
+            width: 140px; height: 210px;
+            bottom: 30%; right: 0%;
+            --r: 15deg;
+            transform: rotate(15deg);
+            filter: blur(2.5px) brightness(0.92);
+            z-index: 1;
+            opacity: 0.85;
+            animation-delay: 5.5s;
+        }
+
+        @keyframes floatBook {
+            0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+            50%      { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 3;
+            max-width: 780px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4em;
+            font-size: 4.2em;
             color: var(--secondary);
             margin-bottom: 15px;
-            line-height: 1.1;
+            line-height: 1.05;
+            letter-spacing: 0.5px;
+            text-shadow: 0 4px 24px rgba(255, 255, 255, 0.9);
         }
 
         .tagline {
-            font-size: 1.5em;
+            font-size: 1.45em;
             color: var(--gray);
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             font-weight: 300;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 0 2px 16px rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-kicker {
+            display: inline-block;
+            margin-bottom: 22px;
+            padding: 8px 22px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 153, 0, 0.5);
+            color: var(--primary-dark);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8em;
         }
 
         /* Social Media Section */
@@ -593,22 +701,10 @@
             box-shadow: 0 10px 20px rgba(255, 153, 0, 0.3);
         }
 
-        /* Colorful touches for book cards */
-        .book-card:nth-child(1) {
-            border-top: 5px solid #3498db;
-        }
-
-        .book-card:nth-child(2) {
-            border-top: 5px solid #e74c3c;
-        }
-
-        .book-card:nth-child(3) {
-            border-top: 5px solid #2ecc71;
-        }
-
-        .book-card:nth-child(4) {
-            border-top: 5px solid #9b59b6;
-        }
+        .book-card:nth-child(1) { border-top: 5px solid #3498db; }
+        .book-card:nth-child(2) { border-top: 5px solid #e74c3c; }
+        .book-card:nth-child(3) { border-top: 5px solid #2ecc71; }
+        .book-card:nth-child(4) { border-top: 5px solid #9b59b6; }
 
         /* About Section */
         .about-section {
@@ -702,17 +798,29 @@
         /* Responsive Design */
         @media (max-width: 992px) {
             h1 { font-size: 3.2em; }
-            .hero { padding: 60px 40px; }
+            .hero { min-height: 560px; padding: 70px 30px; }
             .books-section, .about-section, .social-media-section, .new-book-section { padding: 40px; }
             .books-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
             .new-book-content { flex-direction: column; text-align: center; }
             .new-book-cover { flex: 0 0 auto; }
+            .hero-book.b1 { width: 150px; height: 225px; }
+            .hero-book.b2 { width: 135px; height: 200px; }
+            .hero-book.b3 { width: 138px; height: 207px; }
+            .hero-book.b4 { width: 152px; height: 228px; }
+            .hero-book.far1, .hero-book.far2 { display: none; }
         }
 
         @media (max-width: 768px) {
             body { padding-top: 70px; }
-            h1 { font-size: 2.8em; }
-            .hero { padding: 50px 30px; }
+            h1 { font-size: 2.7em; }
+            .hero { min-height: 520px; padding: 60px 22px; }
+            .tagline { font-size: 1.2em; }
+            .hero-glow { width: 420px; height: 420px; }
+            .hero-book.b1 { width: 105px; height: 158px; top: 4%; left: 2%; }
+            .hero-book.b2 { width: 100px; height: 150px; top: 6%; right: 2%; }
+            .hero-book.b3 { width: 100px; height: 150px; bottom: 4%; left: 3%; }
+            .hero-book.b4 { width: 108px; height: 162px; bottom: 3%; right: 2%; }
+            .hero-book { border-width: 3px; }
             .books-section, .about-section, .social-media-section, .new-book-section { padding: 30px; }
             .books-grid { grid-template-columns: 1fr; }
             .social-grid { grid-template-columns: 1fr; }
@@ -721,9 +829,13 @@
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 2.3em; }
-            .hero { padding: 40px 20px; }
-            .author-image { width: 160px; height: 160px; font-size: 50px; }
+            h1 { font-size: 2.2em; }
+            .hero { min-height: 460px; padding: 50px 18px; }
+            .tagline { font-size: 1.05em; }
+            .hero-book.b1 { width: 82px; height: 123px; }
+            .hero-book.b2 { width: 80px; height: 120px; }
+            .hero-book.b3 { width: 80px; height: 120px; }
+            .hero-book.b4 { width: 86px; height: 129px; }
             .books-section, .about-section, .social-media-section, .new-book-section { padding: 25px; }
             .book-cover { width: 150px; height: 225px; }
             .new-book-info h2 { font-size: 2em; }
@@ -753,13 +865,36 @@
 
     <div class="container">
 
-        <!-- Hero Section -->
+        <!-- Hero Section - Cinematic -->
         <section class="hero" id="home">
-            <div class="author-image">
-                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 70px; font-weight: bold;">RL</div>
+            <div class="hero-glow"></div>
+
+            <div class="hero-books">
+                <div class="hero-book b1">
+                    <img src="https://m.media-amazon.com/images/I/512TCdClX9L._SL1500_.jpg" alt="The Wolf and the Gazelle">
+                </div>
+                <div class="hero-book b2">
+                    <img src="https://m.media-amazon.com/images/I/41UJ5xtIccL._SL1500_.jpg" alt="Bound by Destiny">
+                </div>
+                <div class="hero-book b3">
+                    <img src="https://m.media-amazon.com/images/I/71oI35c4mEL._SL1500_.jpg" alt="Endorphin: The Ache of Wanting">
+                </div>
+                <div class="hero-book b4">
+                    <img src="https://m.media-amazon.com/images/I/51Yk7qnQ1gL._SL1500_.jpg" alt="The Daughter Who Was Not Named">
+                </div>
+                <div class="hero-book far1">
+                    <img src="https://m.media-amazon.com/images/I/71oI35c4mEL._SL1500_.jpg" alt="">
+                </div>
+                <div class="hero-book far2">
+                    <img src="https://m.media-amazon.com/images/I/41UJ5xtIccL._SL1500_.jpg" alt="">
+                </div>
             </div>
-            <h1>Rabeè Luqmann</h1>
-            <p class="tagline">German-Jordanian Author • Exploring Love, Desire & Human Relationships</p>
+
+            <div class="hero-text">
+                <span class="hero-kicker">Author • Novelist</span>
+                <h1>Rabeè Luqmann</h1>
+                <p class="tagline">German-Jordanian Author • Exploring Love, Desire & Human Relationships</p>
+            </div>
         </section>
 
         <!-- New Book Section -->
@@ -803,7 +938,6 @@
 
             <div class="books-grid">
 
-                <!-- Bound by Destiny -->
                 <div class="book-card">
                     <div class="book-cover">
                         <img src="https://m.media-amazon.com/images/I/41UJ5xtIccL._SL1500_.jpg" alt="Bound by Destiny Cover">
@@ -819,7 +953,6 @@
                     </a>
                 </div>
 
-                <!-- Endorphin -->
                 <div class="book-card">
                     <div class="book-cover">
                         <img src="https://m.media-amazon.com/images/I/71oI35c4mEL._SL1500_.jpg" alt="Endorphin: The Ache of Wanting Cover">
@@ -835,7 +968,6 @@
                     </a>
                 </div>
 
-                <!-- The Daughter Who Was Not Named -->
                 <div class="book-card">
                     <div class="book-cover">
                         <img src="https://m.media-amazon.com/images/I/51Yk7qnQ1gL._SL1500_.jpg" alt="The Daughter Who Was Not Named Cover">
@@ -860,7 +992,6 @@
 
             <div class="social-grid">
 
-                <!-- Instagram Card -->
                 <div class="social-card instagram">
                     <i class="fab fa-instagram"></i>
                     <h3>Instagram</h3>
@@ -870,7 +1001,6 @@
                     </a>
                 </div>
 
-                <!-- TikTok Card -->
                 <div class="social-card tiktok">
                     <i class="fab fa-tiktok"></i>
                     <h3>TikTok</h3>
@@ -880,7 +1010,6 @@
                     </a>
                 </div>
 
-                <!-- Books Card -->
                 <div class="social-card" style="border-color: var(--primary); background: linear-gradient(135deg, rgba(255, 153, 0, 0.05), rgba(35, 47, 62, 0.05));">
                     <i class="fas fa-book" style="color: var(--primary);"></i>
                     <h3>My Books</h3>
@@ -929,13 +1058,10 @@
 
     </div>
 
-    <!-- Simple JavaScript for active navigation -->
     <script>
-        // Get all sections and navigation links
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        // Update active nav link on scroll
         window.addEventListener('scroll', function() {
             let current = '';
 
@@ -956,7 +1082,6 @@
             });
         });
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
